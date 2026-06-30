@@ -20,23 +20,42 @@
             transition: all 0.3s ease;
         }
         .btn-alquimia:active { transform: scale(0.95); }
+        .ascension-btn {
+            background: linear-gradient(135deg, #4c1d95, #2e1065);
+            border: 1px solid rgba(139, 92, 246, 0.5);
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+            transition: all 0.3s ease;
+        }
+        .ascension-btn:hover { background: linear-gradient(135deg, #5b21b6, #4c1d95); }
     </style>
 </head>
 <body class="h-screen flex flex-col">
+
     <header class="p-4 glass-panel flex justify-between items-center">
         <h1 class="text-xl font-black text-violet-400">NEXUS OS</h1>
         <div id="cash-flow" class="font-bold text-amber-400">$0.00</div>
     </header>
+
     <main id="chat-container" class="flex-1 overflow-y-auto p-4 space-y-4"></main>
+
     <footer class="p-4 bg-[#050508] border-t border-violet-900/30">
+        <div class="mb-4">
+            <a href="TU_LINK_DE_STRIPE_AQUÍ" 
+               class="ascension-btn block w-full text-center text-white font-bold py-3 rounded-xl uppercase tracking-widest text-sm">
+                Iniciar Ascensión de Activos
+            </a>
+        </div>
+        
         <form id="nexus-form" class="flex gap-2">
             <input type="text" id="user-input" autocomplete="off" placeholder="Ej: Venta de 1000 a Carlos..." class="flex-1 bg-slate-950 border border-slate-800 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-violet-500">
             <button type="submit" class="btn-alquimia text-white rounded-xl px-6 py-3 font-bold uppercase tracking-wider">Enviar</button>
         </form>
+        
         <div class="text-[9px] text-center text-slate-600 mt-3 uppercase tracking-widest">
             © 2026 NEXUS OS | Solvens Amoris
         </div>
     </footer>
+
     <script src="app.js"></script>
 </body>
 </html>
