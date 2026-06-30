@@ -1,38 +1,30 @@
-// Inicialización del cliente Supabase
-const supabase = supabase.createClient(
-    process.env.SUPABASE_URL,
-    process.env.SUPABASE_ANON_KEY
-);
+// Asegúrate de reemplazar estos valores con tus credenciales de Supabase
+const SUPABASE_URL = "TU_URL_AQUÍ";
+const SUPABASE_ANON_KEY = "TU_ANON_KEY_AQUÍ";
 
-document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('nexus-form');
-    const input = document.getElementById('user-input');
-    const chatContainer = document.getElementById('chat-container');
+const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const texto = input.value.trim();
-        if (!texto) return;
+document.getElementById('nexus-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const texto = document.getElementById('user-input').value;
+    
+    // Mostramos feedback en consola para depurar
+    console.log("Enviando nota:", texto);
 
-        // Feedback visual inmediato
-        const div = document.createElement('div');
-        div.className = 'glass-panel p-3 rounded-xl text-xs text-white my-2';
-        div.textContent = "Procesando...";
-        chatContainer.appendChild(div);
+    const { error } = await supabase
+        .from('ventas')
+        .insert([{ 
+            monto: 0, 
+            tipo: 'ingreso', 
+            notas: texto // Asegúrate que tu columna en Supabase se llame 'notas'
+        }]);
 
-        try {
-            // Envío a la tabla 'ventas'
-            const { error } = await supabase
-                .from('ventas')
-                .insert([{ monto: 0, tipo: 'ingreso', nota: texto }]);
-
-            if (error) throw error;
-
-            div.textContent = "✅ Registrado: " + texto;
-            input.value = '';
-        } catch (err) {
-            console.error("Error:", err);
-            div.textContent = "Error de conexión. Verifica Supabase.";
-        }
-    });
+    if (error) {
+        // Esto te dirá exactamente qué falla si no se guarda
+        alert("Error al guardar en Supabase: " + error.message);
+        console.error("Error completo:", error);
+    } else {
+        alert("¡Transmutación exitosa!");
+        document.getElementById('user-input').value = ''; // Limpiamos el input
+    }
 });
