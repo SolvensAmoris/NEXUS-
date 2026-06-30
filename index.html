@@ -7,44 +7,27 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
-        /* Estética Dark Wizard / Alquímica */
-        body { 
-            background-color: #050508; 
-            color: #E2E8F0; 
-            font-family: 'Inter', sans-serif; 
-        }
-        
-        /* Panel con aura de misterio y violeta profundo */
+        body { background-color: #050508; color: #E2E8F0; font-family: 'Inter', sans-serif; }
         .glass-panel { 
             background: rgba(15, 15, 25, 0.7); 
             backdrop-filter: blur(15px); 
-            border: 1px solid rgba(139, 92, 246, 0.3); /* Violeta sutil */
+            border: 1px solid rgba(139, 92, 246, 0.3); 
             box-shadow: 0 0 20px rgba(139, 92, 246, 0.15); 
         }
-        
-        /* Botón estilo 'Daga del Sol' con toque violeta */
         .btn-alquimia {
             background: linear-gradient(135deg, #7c3aed, #4c1d95);
             box-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
             transition: all 0.3s ease;
         }
-        .btn-alquimia:active { transform: scale(0.95); box-shadow: 0 0 10px rgba(124, 58, 237, 0.6); }
-        
-        header { border-bottom: 1px solid rgba(139, 92, 246, 0.2); }
+        .btn-alquimia:active { transform: scale(0.95); }
     </style>
 </head>
 <body class="h-screen flex flex-col">
-
-    <!-- Header -->
     <header class="p-4 glass-panel flex justify-between items-center">
         <h1 class="text-xl font-black text-violet-400">NEXUS OS</h1>
         <div id="cash-flow" class="font-bold text-amber-400">$0.00</div>
     </header>
-
-    <!-- Contenedor del Chat -->
     <main id="chat-container" class="flex-1 overflow-y-auto p-4 space-y-4"></main>
-
-    <!-- Footer / Input con Copyright -->
     <footer class="p-4 bg-[#050508] border-t border-violet-900/30">
         <form id="nexus-form" class="flex gap-2">
             <input type="text" id="user-input" autocomplete="off" placeholder="Ej: Venta de 1000 a Carlos..." class="flex-1 bg-slate-950 border border-slate-800 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-violet-500">
@@ -54,8 +37,6 @@
             © 2026 NEXUS OS | Solvens Amoris
         </div>
     </footer>
-
-    <!-- Script Principal -->
     <script src="app.js"></script>
 </body>
 </html>
